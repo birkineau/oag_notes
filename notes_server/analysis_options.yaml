@@ -1,0 +1,9 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    always_put_required_named_parameters_first: false
+    missing_whitespace_between_adjacent_strings: false
+    prefer_int_literals: false
+    prefer_single_quotes: false
+    public_member_api_docs: false

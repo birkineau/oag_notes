@@ -1,0 +1,476 @@
+{
+  "actions": [
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_user_info"
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_user_image"
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_google_refresh_token"
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_email_reset"
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_email_failed_sign_in"
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_email_create_request"
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "serverpod_email_auth"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "account",
+        "dartName": "Account",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('account_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "uid",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "email",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "created",
+            "columnType": 4,
+            "isNullable": false,
+            "dartType": "DateTime"
+          },
+          {
+            "name": "scopes",
+            "columnType": 8,
+            "isNullable": false,
+            "dartType": "List<String>"
+          },
+          {
+            "name": "blocked",
+            "columnType": 1,
+            "isNullable": false,
+            "dartType": "bool"
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "indexName": "account_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "fcm_token"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "fcm_token",
+        "dartName": "FcmToken",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('fcm_token_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "accountId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "token",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "fcm_token_fk_0",
+            "columns": [
+              "accountId"
+            ],
+            "referenceTable": "account",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "fcm_token_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "fcm_token__account_id__unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "accountId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "password_update"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "password_update",
+        "dartName": "PasswordUpdate",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('password_update_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "accountId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "validationCodeId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "password_update_fk_0",
+            "columns": [
+              "accountId"
+            ],
+            "referenceTable": "account",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          },
+          {
+            "constraintName": "password_update_fk_1",
+            "columns": [
+              "validationCodeId"
+            ],
+            "referenceTable": "validation_code",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "password_update_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "password_request__account_id__unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "accountId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "validation_code"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "validation_code",
+        "dartName": "ValidationCode",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('validation_code_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "accountId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "value",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "created",
+            "columnType": 4,
+            "isNullable": false,
+            "dartType": "DateTime"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "validation_code_fk_0",
+            "columns": [
+              "accountId"
+            ],
+            "referenceTable": "account",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "validation_code_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "validation_code__account_id__unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "accountId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_user_info\" will be dropped.",
+      "table": "serverpod_user_info",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_user_image\" will be dropped.",
+      "table": "serverpod_user_image",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_google_refresh_token\" will be dropped.",
+      "table": "serverpod_google_refresh_token",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_email_reset\" will be dropped.",
+      "table": "serverpod_email_reset",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_email_failed_sign_in\" will be dropped.",
+      "table": "serverpod_email_failed_sign_in",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_email_create_request\" will be dropped.",
+      "table": "serverpod_email_create_request",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "Table \"serverpod_email_auth\" will be dropped.",
+      "table": "serverpod_email_auth",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"userId\" of table \"fcm_token\" will be dropped.",
+      "table": "fcm_token",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"fcm_token__account_id__unique_idx\" is added to table \"fcm_token\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "fcm_token",
+      "columns": [
+        "accountId"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"fcm_token\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "fcm_token",
+      "columns": [
+        "accountId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"userId\" of table \"password_update\" will be dropped.",
+      "table": "password_update",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"password_request__account_id__unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "password_update",
+      "columns": [
+        "accountId"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"password_update\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "password_update",
+      "columns": [
+        "accountId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"userId\" of table \"validation_code\" will be dropped.",
+      "table": "validation_code",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"validation_code__account_id__unique_idx\" is added to table \"validation_code\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "validation_code",
+      "columns": [
+        "accountId"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"validation_code\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "validation_code",
+      "columns": [
+        "accountId"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

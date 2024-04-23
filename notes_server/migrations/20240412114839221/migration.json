@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "type": "deleteTable",
+      "deleteTable": "tag"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "tag",
+        "dartName": "Tag",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('tag_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "type",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "protocol:TagType"
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "indexName": "tag_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "tag_type__unique_index_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "type"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "columnDropped",
+      "message": "Column \"name\" of table \"tag\" will be dropped.",
+      "table": "tag",
+      "columns": [
+        "name"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"tag_type__unique_index_idx\" is added to table \"tag\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "tag",
+      "columns": [
+        "type"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"tag\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "tag",
+      "columns": [
+        "type"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

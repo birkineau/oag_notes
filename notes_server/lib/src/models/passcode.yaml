@@ -1,0 +1,16 @@
+class: Passcode
+table: passcode
+serverOnly: true
+fields:
+  # The ID of the user this validation code is for.
+  userId: int, relation(parent=user)
+
+  # The validation code value.
+  value: String
+
+  # The creation date and time of the validation code.
+  created: DateTime
+indexes:
+  passcode_user_id_unique_idx:
+    fields: userId
+    unique: true

@@ -1,0 +1,14 @@
+### A tag associated with a user account.
+###
+### Tags are used to handle account capabilities and restrictions.
+enum: TagType
+serialized: byName
+values:
+  - admin
+
+  ### The user has created an account, but has not yet verified their
+  ### authentication provider; unable to sign in.
+  - unverified
+
+  ### The user has verified their authentication provider; able to sign in.
+  - verified

@@ -1,0 +1,188 @@
+{
+  "actions": [
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "password_update",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "indexName": "password_request__user_id__unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "userId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "password_request__account_id__unique_idx"
+        ],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": [
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"password_request__user_id__unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "password_update",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "columnDropped",
+            "message": "Column \"scopes\" of table \"user\" will be dropped.",
+            "table": "user",
+            "columns": [
+              "scopes"
+            ],
+            "destrucive": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "user",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [
+          "scopes"
+        ],
+        "modifyColumns": [],
+        "addIndexes": [],
+        "deleteIndexes": [],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": [
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"password_request__user_id__unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "password_update",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "columnDropped",
+            "message": "Column \"scopes\" of table \"user\" will be dropped.",
+            "table": "user",
+            "columns": [
+              "scopes"
+            ],
+            "destrucive": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "user_tag",
+        "dartName": "UserTag",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('user_tag_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "name",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "excludes",
+            "columnType": 8,
+            "isNullable": true,
+            "dartType": "List<protocol:UserTag>?"
+          },
+          {
+            "name": "_userTagsUserId",
+            "columnType": 2,
+            "isNullable": true,
+            "dartType": "int?"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "user_tag_fk_0",
+            "columns": [
+              "_userTagsUserId"
+            ],
+            "referenceTable": "user",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "user_tag_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "user_tag_value__unique_index_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "name"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"password_request__user_id__unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "password_update",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"scopes\" of table \"user\" will be dropped.",
+      "table": "user",
+      "columns": [
+        "scopes"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

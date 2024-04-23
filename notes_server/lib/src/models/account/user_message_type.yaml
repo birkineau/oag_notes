@@ -1,0 +1,5 @@
+enum: UserMessageType
+values:
+  - blocked
+  - deleted
+  - unblocked

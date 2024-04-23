@@ -1,0 +1,8 @@
+class: ScheduledNotificationPayload
+serverOnly: true
+fields:
+  fcmToken: FcmToken
+  title: String
+  body: String?
+  data: Map<String, String>?
+  time: DateTime

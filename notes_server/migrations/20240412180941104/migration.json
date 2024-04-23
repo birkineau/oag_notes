@@ -1,0 +1,442 @@
+{
+  "actions": [
+    {
+      "type": "deleteTable",
+      "deleteTable": "validation_code"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "passcode",
+        "dartName": "Passcode",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('passcode_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "userId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "value",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "created",
+            "columnType": 4,
+            "isNullable": false,
+            "dartType": "DateTime"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "passcode_fk_0",
+            "columns": [
+              "userId"
+            ],
+            "referenceTable": "user",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "passcode_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "passcode_user_id_unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "userId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "password_update"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "password_update",
+        "dartName": "PasswordUpdate",
+        "module": "notes",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 2,
+            "isNullable": false,
+            "columnDefault": "nextval('password_update_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "userId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          },
+          {
+            "name": "passcodeId",
+            "columnType": 2,
+            "isNullable": false,
+            "dartType": "int"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "password_update_fk_0",
+            "columns": [
+              "userId"
+            ],
+            "referenceTable": "user",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          },
+          {
+            "constraintName": "password_update_fk_1",
+            "columns": [
+              "passcodeId"
+            ],
+            "referenceTable": "passcode",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "password_update_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "password_update_user_id_unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "userId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "tag",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "indexName": "tag_type_unique_index_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "type"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "tag_type__unique_index_idx"
+        ],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": [
+          {
+            "type": "tableDropped",
+            "message": "Table \"validation_code\" will be dropped.",
+            "table": "validation_code",
+            "columns": [],
+            "destrucive": true
+          },
+          {
+            "type": "columnDropped",
+            "message": "Column \"validationCodeId\" of table \"password_update\" will be dropped.",
+            "table": "password_update",
+            "columns": [
+              "validationCodeId"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"password_update_user_id_unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "password_update",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "tableDropped",
+            "message": "One or more columns are added to table \"password_update\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+            "table": "password_update",
+            "columns": [
+              "passcodeId"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"tag_type_unique_index_idx\" is added to table \"tag\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "tag",
+            "columns": [
+              "type"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"user_tag_userId_unique_idx\" is added to table \"user_tag\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "user_tag",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"user_tag_userId_tagId_unique_idx\" is added to table \"user_tag\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "user_tag",
+            "columns": [
+              "userId",
+              "tagId"
+            ],
+            "destrucive": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "user_tag",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "indexName": "user_tag_userId_unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "userId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          },
+          {
+            "indexName": "user_tag_userId_tagId_unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "userId"
+              },
+              {
+                "type": 0,
+                "definition": "tagId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "user_tag_unique_index_idx"
+        ],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": [
+          {
+            "type": "tableDropped",
+            "message": "Table \"validation_code\" will be dropped.",
+            "table": "validation_code",
+            "columns": [],
+            "destrucive": true
+          },
+          {
+            "type": "columnDropped",
+            "message": "Column \"validationCodeId\" of table \"password_update\" will be dropped.",
+            "table": "password_update",
+            "columns": [
+              "validationCodeId"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"password_update_user_id_unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "password_update",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "tableDropped",
+            "message": "One or more columns are added to table \"password_update\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+            "table": "password_update",
+            "columns": [
+              "passcodeId"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"tag_type_unique_index_idx\" is added to table \"tag\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "tag",
+            "columns": [
+              "type"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"user_tag_userId_unique_idx\" is added to table \"user_tag\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "user_tag",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"user_tag_userId_tagId_unique_idx\" is added to table \"user_tag\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "user_tag",
+            "columns": [
+              "userId",
+              "tagId"
+            ],
+            "destrucive": false
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "tableDropped",
+      "message": "Table \"validation_code\" will be dropped.",
+      "table": "validation_code",
+      "columns": [],
+      "destrucive": true
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"validationCodeId\" of table \"password_update\" will be dropped.",
+      "table": "password_update",
+      "columns": [
+        "validationCodeId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"password_update_user_id_unique_idx\" is added to table \"password_update\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "password_update",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"password_update\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "password_update",
+      "columns": [
+        "passcodeId"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"tag_type_unique_index_idx\" is added to table \"tag\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "tag",
+      "columns": [
+        "type"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"user_tag_userId_unique_idx\" is added to table \"user_tag\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "user_tag",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"user_tag_userId_tagId_unique_idx\" is added to table \"user_tag\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "user_tag",
+      "columns": [
+        "userId",
+        "tagId"
+      ],
+      "destrucive": false
+    }
+  ],
+  "migrationApiVersion": 1
+}

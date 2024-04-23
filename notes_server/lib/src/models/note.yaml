@@ -1,0 +1,12 @@
+# Holds a user-written note.
+class: Note
+table: note
+fields:
+  # The contents of the note.
+  text: String
+  # The date and time the note was created.
+  created: DateTime
+  # The date and time the note was last updated.
+  updated: DateTime
+  # Whether the note is currently active.
+  active: bool

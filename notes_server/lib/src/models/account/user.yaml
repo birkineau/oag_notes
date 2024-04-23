@@ -1,0 +1,8 @@
+class: User
+table: user
+fields:
+  uid: String
+  email: String
+  created: DateTime
+  tags: List<UserTag>?, relation(name=user_tag_user), scope=serverOnly
+  blocked: bool

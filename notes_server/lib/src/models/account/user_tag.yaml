@@ -1,0 +1,11 @@
+class: UserTag
+table: user_tag
+fields:
+  user: User?, relation(name=user_tag_user), scope=serverOnly
+  tag: Tag?, relation(name=user_tag_tag), scope=serverOnly
+indexes:
+  user_tag_userId_idx:
+    fields: userId
+  user_tag_userId_tagId_unique_idx:
+    fields: userId, tagId
+    unique: true

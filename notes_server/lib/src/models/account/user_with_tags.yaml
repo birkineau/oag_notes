@@ -1,0 +1,8 @@
+### An [User] with a list of their associated tags.
+class: UserWithTags
+fields:
+  ### The user.
+  user: User
+
+  ### The user's associated tags.
+  tags: List<TagType>

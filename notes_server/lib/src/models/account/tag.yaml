@@ -1,0 +1,10 @@
+class: Tag
+table: tag
+serverOnly: true
+fields:
+  type: TagType
+  users: List<UserTag>?, relation(name=user_tag_tag)
+indexes:
+  tag_type_unique_index_idx:
+    fields: type
+    unique: true

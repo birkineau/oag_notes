@@ -1,0 +1,12 @@
+class: FcmToken
+table: fcm_token
+fields:
+  # The ID of the user this FCM token is for.
+  userId: int, relation(parent=user)
+
+  # The FCM client token.
+  token: String
+indexes:
+  fcm_token__account_id__unique_idx:
+    fields: userId
+    unique: true

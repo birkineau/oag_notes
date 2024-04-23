@@ -1,0 +1,4 @@
+class: UserMessage
+fields:
+  user: User
+  type: UserMessageType

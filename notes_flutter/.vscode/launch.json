@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "notes_client",
+            "cwd": "notes_client",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "notes_flutter",
+            "cwd": "notes_flutter",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+        },
+        {
+            "name": "notes_flutter (profile mode)",
+            "cwd": "notes_flutter",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "notes_flutter (release mode)",
+            "cwd": "notes_flutter",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "notes_server",
+            "cwd": "notes_server",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}

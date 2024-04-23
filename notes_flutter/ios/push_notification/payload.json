@@ -1,0 +1,9 @@
+{
+    "aps": {
+        "alert": {
+            "title": "My title",
+            "subtitle": "My subtitle",
+            "body": "This is the notification body"
+        }
+    }
+}

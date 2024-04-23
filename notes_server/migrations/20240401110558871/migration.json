@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "email_validation_code",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "indexName": "email_validation_code__user_id__unique_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "userId"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [
+          "email_validation_code_user_id_unique"
+        ],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": [
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"email_validation_code__user_id__unique_idx\" is added to table \"email_validation_code\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "email_validation_code",
+            "columns": [
+              "userId"
+            ],
+            "destrucive": false
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"email_validation_code__user_id__unique_idx\" is added to table \"email_validation_code\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "email_validation_code",
+      "columns": [
+        "userId"
+      ],
+      "destrucive": false
+    }
+  ],
+  "migrationApiVersion": 1
+}
