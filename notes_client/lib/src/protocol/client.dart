@@ -104,7 +104,6 @@ class EndpointNotes extends _i1.EndpointRef {
       );
 }
 
-<<<<<<< HEAD
 /// {@category Endpoint}
 class EndpointNotification extends _i1.EndpointRef {
   EndpointNotification(_i1.EndpointCaller caller) : super(caller);
@@ -174,12 +173,6 @@ class EndpointNotification extends _i1.EndpointRef {
 /// {@category Endpoint}
 class EndpointUser extends _i1.EndpointRef {
   EndpointUser(_i1.EndpointCaller caller) : super(caller);
-=======
-class _Modules {
-  _Modules(Client client) {
-    auth = _i5.Caller(client);
-  }
->>>>>>> parent of a64c4e5 (fcm)
 
   @override
   String get name => 'user';
@@ -267,35 +260,24 @@ class Client extends _i1.ServerpodClient {
         ) {
     accountManager = EndpointAccountManager(this);
     notes = EndpointNotes(this);
-<<<<<<< HEAD
     notification = EndpointNotification(this);
     user = EndpointUser(this);
-=======
-    modules = _Modules(this);
->>>>>>> parent of a64c4e5 (fcm)
   }
 
   late final EndpointAccountManager accountManager;
 
   late final EndpointNotes notes;
 
-<<<<<<< HEAD
   late final EndpointNotification notification;
 
   late final EndpointUser user;
-=======
-  late final _Modules modules;
->>>>>>> parent of a64c4e5 (fcm)
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'accountManager': accountManager,
         'notes': notes,
-<<<<<<< HEAD
         'notification': notification,
         'user': user,
-=======
->>>>>>> parent of a64c4e5 (fcm)
       };
 
   @override

@@ -11,16 +11,12 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/account_manager_endpoint.dart' as _i2;
 import '../endpoints/notes_endpoint.dart' as _i3;
-<<<<<<< HEAD
 import '../endpoints/notification_endpoint.dart' as _i4;
 import '../endpoints/user_endpoint.dart' as _i5;
-import 'package:notes_server/src/generated/account/tag_type.dart' as _i6;
-import 'package:notes_server/src/generated/note.dart' as _i7;
-import 'package:notes_server/src/generated/notification/fcm_token.dart' as _i8;
-=======
-import 'package:notes_server/src/generated/note.dart' as _i4;
-import 'package:serverpod_auth_server/module.dart' as _i5;
->>>>>>> parent of a64c4e5 (fcm)
+import '../endpoints/account_endpoint.dart' as _i6;
+import 'package:notes_server/src/generated/account/tag_type.dart' as _i7;
+import 'package:notes_server/src/generated/note.dart' as _i8;
+import 'package:notes_server/src/generated/notification/fcm_token.dart' as _i9;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -38,7 +34,6 @@ class Endpoints extends _i1.EndpointDispatch {
           'notes',
           null,
         ),
-<<<<<<< HEAD
       'notification': _i4.NotificationEndpoint()
         ..initialize(
           server,
@@ -51,9 +46,110 @@ class Endpoints extends _i1.EndpointDispatch {
           'user',
           null,
         ),
-=======
->>>>>>> parent of a64c4e5 (fcm)
     };
+    connectors['accountManager'] = _i1.EndpointConnector(
+      name: 'accountManager',
+      endpoint: endpoints['accountManager']!,
+      methodConnectors: {
+        'getUsers': _i1.MethodConnector(
+          name: 'getUsers',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['accountManager'] as _i6.AccountManagerEndpoint)
+                  .getUsers(session),
+        ),
+        'addTagTypes': _i1.MethodConnector(
+          name: 'addTagTypes',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'types': _i1.ParameterDescription(
+              name: 'types',
+              type: _i1.getType<Set<_i7.TagType>>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['accountManager'] as _i6.AccountManagerEndpoint)
+                  .addTagTypes(
+            session,
+            params['userId'],
+            params['types'],
+          ),
+        ),
+        'removeTagTypes': _i1.MethodConnector(
+          name: 'removeTagTypes',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'types': _i1.ParameterDescription(
+              name: 'types',
+              type: _i1.getType<Set<_i7.TagType>>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['accountManager'] as _i6.AccountManagerEndpoint)
+                  .removeTagTypes(
+            session,
+            params['userId'],
+            params['types'],
+          ),
+        ),
+        'block': _i1.MethodConnector(
+          name: 'block',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['accountManager'] as _i6.AccountManagerEndpoint).block(
+            session,
+            params['userId'],
+          ),
+        ),
+        'unblock': _i1.MethodConnector(
+          name: 'unblock',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['accountManager'] as _i6.AccountManagerEndpoint)
+                  .unblock(
+            session,
+            params['userId'],
+          ),
+        ),
+      },
+    );
     connectors['accountManager'] = _i1.EndpointConnector(
       name: 'accountManager',
       endpoint: endpoints['accountManager']!,
@@ -78,7 +174,7 @@ class Endpoints extends _i1.EndpointDispatch {
             ),
             'types': _i1.ParameterDescription(
               name: 'types',
-              type: _i1.getType<Set<_i6.TagType>>(),
+              type: _i1.getType<Set<_i7.TagType>>(),
               nullable: false,
             ),
           },
@@ -103,7 +199,7 @@ class Endpoints extends _i1.EndpointDispatch {
             ),
             'types': _i1.ParameterDescription(
               name: 'types',
-              type: _i1.getType<Set<_i6.TagType>>(),
+              type: _i1.getType<Set<_i7.TagType>>(),
               nullable: false,
             ),
           },
@@ -166,11 +262,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'note': _i1.ParameterDescription(
               name: 'note',
-<<<<<<< HEAD
-              type: _i1.getType<_i7.Note>(),
-=======
-              type: _i1.getType<_i4.Note>(),
->>>>>>> parent of a64c4e5 (fcm)
+              type: _i1.getType<_i8.Note>(),
               nullable: false,
             )
           },
@@ -188,11 +280,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'note': _i1.ParameterDescription(
               name: 'note',
-<<<<<<< HEAD
-              type: _i1.getType<_i7.Note>(),
-=======
-              type: _i1.getType<_i4.Note>(),
->>>>>>> parent of a64c4e5 (fcm)
+              type: _i1.getType<_i8.Note>(),
               nullable: false,
             )
           },
@@ -210,11 +298,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'note': _i1.ParameterDescription(
               name: 'note',
-<<<<<<< HEAD
-              type: _i1.getType<_i7.Note>(),
-=======
-              type: _i1.getType<_i4.Note>(),
->>>>>>> parent of a64c4e5 (fcm)
+              type: _i1.getType<_i8.Note>(),
               nullable: false,
             )
           },
@@ -238,7 +322,6 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-<<<<<<< HEAD
     connectors['notification'] = _i1.EndpointConnector(
       name: 'notification',
       endpoint: endpoints['notification']!,
@@ -329,7 +412,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'token': _i1.ParameterDescription(
               name: 'token',
-              type: _i1.getType<_i8.FcmToken>(),
+              type: _i1.getType<_i9.FcmToken>(),
               nullable: false,
             )
           },
@@ -497,8 +580,5 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-=======
-    modules['serverpod_auth'] = _i5.Endpoints()..initializeEndpoints(server);
->>>>>>> parent of a64c4e5 (fcm)
   }
 }

@@ -21,14 +21,14 @@ Future<void> _onBackgroundMessage(
     final getInitialMessage = _Messaging.instance.getInitialMessage();
 
     if (await getInitialMessage case final _Message initialMessage) {
-      log("FCM background initial message: ${formatJson(initialMessage.data)}");
+      log("FCM background initial message: ${initialMessage.data}");
       onInitialMessage?.call(initialMessage);
     }
   }
 
   log(
     "FCM background message(fromUserInteraction=$fromUserInteraction): "
-    "${formatJson(message.data)}",
+    "${message.data}",
   );
 
   if (onBackgroundMessage != null) {
@@ -131,7 +131,7 @@ class FcmNotification {
   }
 
   void _onForegroundMessage(_Message message) {
-    log("FCM foreground message: ${formatJson(message.data)}");
+    log("FCM foreground message: ${message.data}");
   }
 
   /// Closes the Firebase Messaging connection.

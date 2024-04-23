@@ -10,12 +10,9 @@ dependencies:
   collection: ^1.18.0
   crypto: ^3.0.3
   firebase_admin: ^0.2.0
-<<<<<<< HEAD
   get_it: ^7.6.9
   googleapis: ^11.4.0
   googleapis_auth: ^1.4.1
-=======
->>>>>>> parent of a64c4e5 (fcm)
   mailer: ^6.1.0
   serverpod: 1.2.6
 

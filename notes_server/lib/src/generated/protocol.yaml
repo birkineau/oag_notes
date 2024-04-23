@@ -4,12 +4,17 @@ accountManager:
   - removeTagTypes:
   - block:
   - unblock:
+accountManager:
+  - getUsers:
+  - addTagTypes:
+  - removeTagTypes:
+  - block:
+  - unblock:
 notes:
   - createNote:
   - updateNote:
   - deleteNote:
   - getNotes:
-<<<<<<< HEAD
 notification:
   - registerWithUserId:
   - registerWithEmail:
@@ -23,5 +28,3 @@ user:
   - validateUserWithCode:
   - signInWithEmail:
   - signOut:
-=======
->>>>>>> parent of a64c4e5 (fcm)

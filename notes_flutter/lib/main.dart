@@ -1,11 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
-<<<<<<< HEAD
 import 'package:flutter/foundation.dart';
-=======
-import 'package:firebase_messaging/firebase_messaging.dart';
->>>>>>> parent of a64c4e5 (fcm)
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:notes_client/notes_client.dart';
 import 'package:notes_flutter/firebase_options.dart';
 import 'package:notes_flutter/notes_flutter.dart';
@@ -20,15 +15,10 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-<<<<<<< HEAD
-  // timeDilation = 3.0;
-
   di
     ..registerSingleton(
       Client(
-        // "http://192.168.1.71:8080/",
-        "http://10.1.10.221:8080/",
-        // "http://localhost:8080/",
+        "http://localhost:8080/",
         authenticationKeyManager: FlutterAuthenticationKeyManager(
           runMode: kReleaseMode ? "production" : "development",
         ),
@@ -36,21 +26,12 @@ Future<void> main() async {
       dispose: (client) => client.close(),
     )
     ..registerSingleton(FcmNotification());
-=======
-  final notificationSettings =
-      await FirebaseMessaging.instance.requestPermission();
-
-  final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
->>>>>>> parent of a64c4e5 (fcm)
 
   runApp(const NotesApplication());
 }
 
-<<<<<<< HEAD
 /// Simulator push test:
 /// xcrun simctl push booted com.example.notesFlutter notes_flutter/ios/push_notification/payload.json
 
-=======
->>>>>>> parent of a64c4e5 (fcm)
 /// Android debug console filter:
 /// !D/EGL, !W/, !D/InsetsController, !D/InputMethodManager, !I/ImeTracker, !I/TextInputPlugin, !I/AssistStructure

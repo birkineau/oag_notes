@@ -1,11 +1,8 @@
 import 'package:notes_server/src/future_calls/future_calls.dart';
-<<<<<<< HEAD
 import 'package:notes_server/src/generated/endpoints.dart';
 import 'package:notes_server/src/generated/protocol.dart';
 import 'package:notes_server/src/utility/utility.dart';
-=======
 import 'package:serverpod/serverpod.dart';
->>>>>>> parent of a64c4e5 (fcm)
 import 'package:notes_server/src/web/routes/root.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -39,10 +36,6 @@ Future<void> run(List<String> args) async {
     ..registerFutureCall(ScheduledNotification(), ScheduledNotification.key)
     ..registerFutureCall(PasswordUpdateDeletion(), PasswordUpdateDeletion.key);
 
-<<<<<<< HEAD
-=======
-  // Start the server.
->>>>>>> parent of a64c4e5 (fcm)
   await pod.start();
   await ServerConfiguration(pod).initialize();
 }
