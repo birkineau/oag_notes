@@ -7,16 +7,6 @@ import 'package:notes_server/src/utility/utility.dart';
 import 'package:serverpod/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
-/// ROGELIO
-/// Acted on route 1,
-/// Patient called from route 2
-/// Driver is able to cancel in route 2 even though route 1 is active
-/// Only open tomorrow's route 5pm
-///
-/// GABY
-/// Pharmacy drivers need new app to fill inspections because of camera fields.
-/// Drivers are not checking if the dash cam is recording/working etc.
-
 /// TODO: Microsoft and Google email providers.
 class UserEndpoint extends Endpoint {
   static const channel = "user_endpoint";
