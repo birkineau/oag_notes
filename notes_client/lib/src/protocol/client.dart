@@ -160,15 +160,6 @@ class EndpointNotification extends _i1.EndpointRef {
       );
 }
 
-/// ROGELIO
-/// Acted on route 1,
-/// Patient called from route 2
-/// Driver is able to cancel in route 2 even though route 1 is active
-/// Only open tomorrow's route 5pm
-///
-/// GABY
-/// Pharmacy drivers need new app to fill inspections because of camera fields.
-/// Drivers are not checking if the dash cam is recording/working etc.
 /// TODO: Microsoft and Google email providers.
 /// {@category Endpoint}
 class EndpointUser extends _i1.EndpointRef {
